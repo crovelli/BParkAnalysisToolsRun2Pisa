@@ -1,0 +1,27 @@
+Tools for B-parking data
+
+-----------------------------------------
+
+# Checkout
+mkdir myWork
+cd myWork/
+git clone git@github.com:crovelli/BParkAnalysisToolsRun2Pisa.git
+cd BParkAnalysisToolsRun2Pisa
+mkdir lib
+
+# Edit include/Application.hh to choose the program to run
+
+# Compile: 
+make all
+
+# Run:
+./BParkApp  -> will give you the list of needed inputs.
+
+E.g. for TnP:
+./BParkApp inputFile [outputFile] [1=MC,0=data] [dataset]
+
+./BParkApp myInputFile.txt myOutput 1 signal
+
+where myInputFile.txt is a txt file with the list of ntuples, e.g. obtained with
+
+ls /eos/cms/store/user/crovelli/ParkingForPisa/FormattedBuToKee.root < myInputFile.txt
