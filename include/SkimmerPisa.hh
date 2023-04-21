@@ -30,7 +30,7 @@ private:
   
   // Analysis methods
   bool isMcB( int myB );
-  bool isMcBOtto( int myB );
+  int isMcBOtto( int myB );
   bool isMcEleFromJPsi (int myEle );
   void bookOutputTree();
   void bookOutputHistos();
@@ -97,7 +97,7 @@ private:
   vector <float> fit_Bsvprob={};
   vector <float> fit_Bxysig={};
   vector <float> fit_BxysigWrtPV={};
-  vector <bool> bmatchMC={};   
+  vector <int> bmatchMC={};   
   //
   vector <float> k_svip2d_vec={};
   vector <float> k_svip3d_vec={};
@@ -105,14 +105,45 @@ private:
   vector <float> tag_dxy_sig_vec={};
   vector <float> probe_dxy_sig_vec={};
 
-  vector <float> b_iso04_vec={};
-  vector <float> b_3diso04_vec={};
-  vector <float> k_iso04_vec={};
-  vector <float> k_3diso04_vec={};
   vector <float> tag_iso04_vec={};
+  vector <float> tag_iso04_dca_vec={};
+  vector <float> tag_iso04_dca_tight_vec={};
   vector <float> tag_3diso04_vec={};
+  vector <float> tag_3diso04_dca_vec={};
+  vector <float> tag_3diso04_dca_tight_vec={};
+  vector <int> tag_ntrk_iso04_vec={};
+  vector <int> tag_ntrk_iso04_dca_vec={};
+  vector <int> tag_ntrk_iso04_dca_tight_vec={};
+
   vector <float> probe_iso04_vec={};
+  vector <float> probe_iso04_dca_vec={};
+  vector <float> probe_iso04_dca_tight_vec={};
   vector <float> probe_3diso04_vec={};
+  vector <float> probe_3diso04_dca_vec={};
+  vector <float> probe_3diso04_dca_tight_vec={};
+  vector <int> probe_ntrk_iso04_vec={};
+  vector <int> probe_ntrk_iso04_dca_vec={};
+  vector <int> probe_ntrk_iso04_dca_tight_vec={};
+
+  vector <float> k_iso04_vec={};
+  vector <float> k_iso04_dca_vec={};
+  vector <float> k_iso04_dca_tight_vec={};
+  vector <float> k_3diso04_vec={};
+  vector <float> k_3diso04_dca_vec={};
+  vector <float> k_3diso04_dca_tight_vec={};
+  vector <int> k_ntrk_iso04_vec={};
+  vector <int> k_ntrk_iso04_dca_vec={};
+  vector <int> k_ntrk_iso04_dca_tight_vec={};
+
+  vector <float> b_iso04_vec={};
+  vector <float> b_iso04_dca_vec={};
+  vector <float> b_iso04_dca_tight_vec={};
+  vector <float> b_3diso04_vec={};
+  vector <float> b_3diso04_dca_vec={};
+  vector <float> b_3diso04_dca_tight_vec={};
+  vector <int> b_ntrk_iso04_vec={};
+  vector <int> b_ntrk_iso04_dca_vec={};
+  vector <int> b_ntrk_iso04_dca_tight_vec={};
 
   int selectedPairsSize;
 };

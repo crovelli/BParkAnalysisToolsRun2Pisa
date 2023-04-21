@@ -40,7 +40,8 @@ float SkimmerPisa::DeltaPhi(float  phi1, float phi2){
 SkimmerPisa::SkimmerPisa(TChain *tree, int isMC )     
   : BParkBase(tree) {        
 
-  sampleID = isMC;         
+  //sampleID = isMC;         
+  sampleID = 1;         
 }
 
 SkimmerPisa::~SkimmerPisa() {
@@ -216,7 +217,9 @@ void SkimmerPisa::Loop() {
 
       // MC truth
       bool isThisAMcB = -1;
-      if (sampleID>0) isThisAMcB = isMcBOtto(thisB);            
+      if (sampleID>0) {
+	isThisAMcB = isMcBOtto(thisB);            
+      }
 
       float thisBmass   = BToKEE_fit_mass[thisB];
       float thisBpt     = BToKEE_fit_pt[thisB];
@@ -286,7 +289,9 @@ void SkimmerPisa::Loop() {
       fit_Bsvprob.push_back(thisBsvprob);
       fit_Bxysig.push_back(thisBxysig);
       fit_BxysigWrtPV.push_back(thisBxysigWrtPV);
-      if(sampleID>0) bmatchMC.push_back(isThisAMcB);
+      if(sampleID>0) {
+	bmatchMC.push_back(isThisAMcB);
+      }
       // 
       tag_pt.push_back(ele1_pt);
       tag_eta.push_back(ele1_eta);
@@ -296,7 +301,14 @@ void SkimmerPisa::Loop() {
       tag_isLowPt.push_back(Electron_isLowPt[ele1_idx]);
       tag_id.push_back(L1id);
       tag_iso04_vec.push_back(BToKEE_l1_iso04[thisB]);
+      tag_iso04_dca_vec.push_back(BToKEE_l1_iso04_dca[thisB]);
+      tag_iso04_dca_tight_vec.push_back(BToKEE_l1_iso04_dca_tight[thisB]);
       tag_3diso04_vec.push_back(BToKEE_l1_3diso04[thisB]);
+      tag_3diso04_dca_vec.push_back(BToKEE_l1_3diso04_dca[thisB]);
+      tag_3diso04_dca_tight_vec.push_back(BToKEE_l1_3diso04_dca_tight[thisB]);
+      tag_ntrk_iso04_vec.push_back(BToKEE_l1_n_iso04trk[thisB]);
+      tag_ntrk_iso04_dca_vec.push_back(BToKEE_l1_n_iso04trk_dca[thisB]);
+      tag_ntrk_iso04_dca_tight_vec.push_back(BToKEE_l1_n_iso04trk_dca_tight[thisB]);
       //
       probe_pt.push_back(ele2_pt);
       probe_eta.push_back(ele2_eta);
@@ -306,20 +318,41 @@ void SkimmerPisa::Loop() {
       probe_isLowPt.push_back(Electron_isLowPt[ele2_idx]); 
       probe_id.push_back(L2id);
       probe_iso04_vec.push_back(BToKEE_l2_iso04[thisB]);
+      probe_iso04_dca_vec.push_back(BToKEE_l2_iso04_dca[thisB]);
+      probe_iso04_dca_tight_vec.push_back(BToKEE_l2_iso04_dca_tight[thisB]);
       probe_3diso04_vec.push_back(BToKEE_l2_3diso04[thisB]);
+      probe_3diso04_dca_vec.push_back(BToKEE_l2_3diso04_dca[thisB]);
+      probe_3diso04_dca_tight_vec.push_back(BToKEE_l2_3diso04_dca_tight[thisB]);
+      probe_ntrk_iso04_vec.push_back(BToKEE_l2_n_iso04trk[thisB]);
+      probe_ntrk_iso04_dca_vec.push_back(BToKEE_l2_n_iso04trk_dca[thisB]);
+      probe_ntrk_iso04_dca_tight_vec.push_back(BToKEE_l2_n_iso04trk_dca_tight[thisB]);
       // 
       K_pt.push_back(k_pt);
       K_eta.push_back(k_eta);
       K_phi.push_back(k_phi);
       k_iso04_vec.push_back(BToKEE_k_iso04[thisB]);
+      k_iso04_dca_vec.push_back(BToKEE_k_iso04_dca[thisB]);
+      k_iso04_dca_tight_vec.push_back(BToKEE_k_iso04_dca_tight[thisB]);
       k_3diso04_vec.push_back(BToKEE_k_3diso04[thisB]);
+      k_3diso04_dca_vec.push_back(BToKEE_k_3diso04_dca[thisB]);
+      k_3diso04_dca_tight_vec.push_back(BToKEE_k_3diso04_dca_tight[thisB]);
+      k_ntrk_iso04_vec.push_back(BToKEE_k_n_iso04trk[thisB]);
+      k_ntrk_iso04_dca_vec.push_back(BToKEE_k_n_iso04trk_dca[thisB]);
+      k_ntrk_iso04_dca_tight_vec.push_back(BToKEE_k_n_iso04trk_dca_tight[thisB]);
       // 
       mll_fullfit.push_back(BToKEE_mll_fullfit[thisB]);
       mll_raw.push_back(BToKEE_mll_raw[thisB]);
       //
       // b isolation
       b_iso04_vec.push_back(BToKEE_b_iso04[thisB]);
+      b_iso04_dca_vec.push_back(BToKEE_b_iso04_dca[thisB]);
+      b_iso04_dca_tight_vec.push_back(BToKEE_b_iso04_dca_tight[thisB]);
       b_3diso04_vec.push_back(BToKEE_b_3diso04[thisB]);
+      b_3diso04_dca_vec.push_back(BToKEE_b_3diso04_dca[thisB]);
+      b_3diso04_dca_tight_vec.push_back(BToKEE_b_3diso04_dca_tight[thisB]);
+      b_ntrk_iso04_vec.push_back(BToKEE_b_n_iso04trk[thisB]);
+      b_ntrk_iso04_dca_vec.push_back(BToKEE_b_n_iso04trk_dca[thisB]);
+      b_ntrk_iso04_dca_tight_vec.push_back(BToKEE_b_n_iso04trk_dca_tight[thisB]);
 
       // I.P.
       float BToKEE_l1_dxy_sig=(Electron_dxy[ele1_idx]) /Electron_dxyErr[ele1_idx];
@@ -425,14 +458,45 @@ void SkimmerPisa::Loop() {
     tag_dxy_sig_vec.clear();
     probe_dxy_sig_vec.clear();
 
-    k_iso04_vec.clear();
-    k_3diso04_vec.clear();
-    b_iso04_vec.clear();
-    b_3diso04_vec.clear();
-    tag_iso04_vec.clear();
-    tag_3diso04_vec.clear();
-    probe_iso04_vec.clear();
-    probe_3diso04_vec.clear();
+    tag_iso04_vec.clear();    
+    tag_iso04_dca_vec.clear();    
+    tag_iso04_dca_tight_vec.clear();    
+    tag_3diso04_vec.clear();    
+    tag_3diso04_dca_vec.clear();    
+    tag_3diso04_dca_tight_vec.clear();    
+    tag_ntrk_iso04_vec.clear();    
+    tag_ntrk_iso04_dca_vec.clear();    
+    tag_ntrk_iso04_dca_tight_vec.clear();    
+
+    probe_iso04_vec.clear();    
+    probe_iso04_dca_vec.clear();    
+    probe_iso04_dca_tight_vec.clear();    
+    probe_3diso04_vec.clear();    
+    probe_3diso04_dca_vec.clear();    
+    probe_3diso04_dca_tight_vec.clear();    
+    probe_ntrk_iso04_vec.clear();    
+    probe_ntrk_iso04_dca_vec.clear();    
+    probe_ntrk_iso04_dca_tight_vec.clear();    
+
+    k_iso04_vec.clear();    
+    k_iso04_dca_vec.clear();    
+    k_iso04_dca_tight_vec.clear();    
+    k_3diso04_vec.clear();    
+    k_3diso04_dca_vec.clear();    
+    k_3diso04_dca_tight_vec.clear();    
+    k_ntrk_iso04_vec.clear();    
+    k_ntrk_iso04_dca_vec.clear();    
+    k_ntrk_iso04_dca_tight_vec.clear();    
+
+    b_iso04_vec.clear();    
+    b_iso04_dca_vec.clear();    
+    b_iso04_dca_tight_vec.clear();    
+    b_3diso04_vec.clear();    
+    b_3diso04_dca_vec.clear();    
+    b_3diso04_dca_tight_vec.clear();    
+    b_ntrk_iso04_vec.clear();    
+    b_ntrk_iso04_dca_vec.clear();    
+    b_ntrk_iso04_dca_tight_vec.clear();    
   }
 }
 
@@ -478,7 +542,7 @@ bool SkimmerPisa::isMcB( int theB ) {
   return RK_res;
 }
 
-bool SkimmerPisa::isMcBOtto( int theB ) {
+int SkimmerPisa::isMcBOtto( int theB ) {
   
   // taking index
   int ele1_idx = BToKEE_l1Idx[theB];
@@ -653,7 +717,7 @@ void SkimmerPisa::bookOutputTree()
   outTree_->Branch("fit_Bxysig",  "std::vector<float>", &fit_Bxysig);  
   outTree_->Branch("fit_BxysigWrtPV",  "std::vector<float>", &fit_BxysigWrtPV);  
 
-  outTree_->Branch("bmatchMC", "std::vector<bool>", &bmatchMC);  
+  outTree_->Branch("bmatchMC", "std::vector<int>", &bmatchMC);  
 
   outTree_->Branch("k_svip2d", "std::vector<float>", &k_svip2d_vec);
   outTree_->Branch("k_svip3d", "std::vector<float>", &k_svip3d_vec);
@@ -661,14 +725,45 @@ void SkimmerPisa::bookOutputTree()
   outTree_->Branch("tag_dxy_sig", "std::vector<float>", &tag_dxy_sig_vec);
   outTree_->Branch("probe_dxy_sig", "std::vector<float>", &probe_dxy_sig_vec);
 
-  outTree_->Branch("b_iso04",     "std::vector<float>", &b_iso04_vec);
-  outTree_->Branch("b_3diso04",   "std::vector<float>", &b_3diso04_vec);
-  outTree_->Branch("k_iso04",     "std::vector<float>", &k_iso04_vec);
-  outTree_->Branch("k_3diso04",   "std::vector<float>", &k_3diso04_vec);
-  outTree_->Branch("tag_iso04",   "std::vector<float>", &tag_iso04_vec);
-  outTree_->Branch("tag_3diso04", "std::vector<float>", &tag_3diso04_vec);
-  outTree_->Branch("probe_iso04", "std::vector<float>", &probe_iso04_vec);
-  outTree_->Branch("probe_3diso04", "std::vector<float>", &probe_3diso04_vec);
+  outTree_->Branch("b_iso04",                "std::vector<float>",  &b_iso04_vec);
+  outTree_->Branch("b_iso04_dca",            "std::vector<float>",  &b_iso04_dca_vec);
+  outTree_->Branch("b_iso04_dca_tight",      "std::vector<float>",  &b_iso04_dca_tight_vec);
+  outTree_->Branch("b_3diso04",              "std::vector<float>",  &b_3diso04_vec);
+  outTree_->Branch("b_3diso04_dca",          "std::vector<float>",  &b_3diso04_dca_vec);
+  outTree_->Branch("b_3diso04_dca_tight",    "std::vector<float>",  &b_3diso04_dca_tight_vec);
+  outTree_->Branch("b_ntrk_iso04",           "std::vector<int>",    &b_ntrk_iso04_vec);
+  outTree_->Branch("b_ntrk_iso04_dca",       "std::vector<int>",    &b_ntrk_iso04_dca_vec);
+  outTree_->Branch("b_ntrk_iso04_dca_tight", "std::vector<int>",    &b_ntrk_iso04_dca_tight_vec);
+
+  outTree_->Branch("k_iso04",                "std::vector<float>",  &k_iso04_vec);
+  outTree_->Branch("k_iso04_dca",            "std::vector<float>",  &k_iso04_dca_vec);
+  outTree_->Branch("k_iso04_dca_tight",      "std::vector<float>",  &k_iso04_dca_tight_vec);
+  outTree_->Branch("k_3diso04",              "std::vector<float>",  &k_3diso04_vec);
+  outTree_->Branch("k_3diso04_dca",          "std::vector<float>",  &k_3diso04_dca_vec);
+  outTree_->Branch("k_3diso04_dca_tight",    "std::vector<float>",  &k_3diso04_dca_tight_vec);
+  outTree_->Branch("k_ntrk_iso04",           "std::vector<int>",    &k_ntrk_iso04_vec);
+  outTree_->Branch("k_ntrk_iso04_dca",       "std::vector<int>",    &k_ntrk_iso04_dca_vec);
+  outTree_->Branch("k_ntrk_iso04_dca_tight", "std::vector<int>",    &k_ntrk_iso04_dca_tight_vec);
+
+  outTree_->Branch("tag_iso04",                "std::vector<float>", &tag_iso04_vec);
+  outTree_->Branch("tag_iso04_dca",            "std::vector<float>", &tag_iso04_dca_vec);
+  outTree_->Branch("tag_iso04_dca_tight",      "std::vector<float>", &tag_iso04_dca_tight_vec);
+  outTree_->Branch("tag_3diso04",              "std::vector<float>", &tag_3diso04_vec);
+  outTree_->Branch("tag_3diso04_dca",          "std::vector<float>", &tag_3diso04_dca_vec);
+  outTree_->Branch("tag_3diso04_dca_tight",    "std::vector<float>", &tag_3diso04_dca_tight_vec);
+  outTree_->Branch("tag_ntrk_iso04",           "std::vector<int>",   &tag_ntrk_iso04_vec);
+  outTree_->Branch("tag_ntrk_iso04_dca",       "std::vector<int>",   &tag_ntrk_iso04_dca_vec);
+  outTree_->Branch("tag_ntrk_iso04_dca_tight", "std::vector<int>",   &tag_ntrk_iso04_dca_tight_vec);
+
+  outTree_->Branch("probe_iso04",                "std::vector<float>", &probe_iso04_vec);
+  outTree_->Branch("probe_iso04_dca",            "std::vector<float>", &probe_iso04_dca_vec);
+  outTree_->Branch("probe_iso04_dca_tight",      "std::vector<float>", &probe_iso04_dca_tight_vec);
+  outTree_->Branch("probe_3diso04",              "std::vector<float>", &probe_3diso04_vec);
+  outTree_->Branch("probe_3diso04_dca",          "std::vector<float>", &probe_3diso04_dca_vec);
+  outTree_->Branch("probe_3diso04_dca_tight",    "std::vector<float>", &probe_3diso04_dca_tight_vec);
+  outTree_->Branch("probe_ntrk_iso04",           "std::vector<int>",   &probe_ntrk_iso04_vec);
+  outTree_->Branch("probe_ntrk_iso04_dca",       "std::vector<int>",   &probe_ntrk_iso04_dca_vec);
+  outTree_->Branch("probe_ntrk_iso04_dca_tight", "std::vector<int>",   &probe_ntrk_iso04_dca_tight_vec);
 
   outTree_->Branch("selectedPairsSize",  &selectedPairsSize,  "selectedPairsSize/I");   
 }
